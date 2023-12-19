@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .popStyle {
+        padding: 10px;
+        width: 200px;
+        height: 100px;
+        display: none;
+        background-color: #011610;
+    }
+
+    p {
+        font-size: 12px;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #cccccc;
+    }
+</style>
+<body>
+    <div class="mapBox">
+        <div class="popStyle">
+            <p>名称：<span class="name"></span></p>
+            <p>经纬度：<span class="jingweidu"></span></p>
+            <p>........</p>
+        </div>
+    </div>
+    <script type="module">
+        import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm"; // 引入D3.js版本
+        const data = await d3.json("https://geojson.cn/api/data/100000.json")  // 官网引入地图数据,这个方法是异步返回promise，需要使用await修饰或.then()方法
+        const width = 800;
+        const height = 800;
+        // 1. 创建一个SVG
+        const svg = d3.select(".mapBox").append("svg").attr("width", width).attr("height", height).style("background-color", "rgba(0, 6, 13,1)")
+        // 2.处理地图数据
+        const projection = d3.geoMercator().fitExtent(
+            [
+                [0, 50], //左上角坐标,
+                [width, 700], //右下角坐标,一般是撑满svg
+            ],
+            data
+        );
+        // 生成地图路径
+        const mapPath = d3.geoPath().projection(projection);
+        function mapInit(data) {
+            svg.append("g").attr("class", "g-path")
+                .selectAll("path")
+                .data(data.features) // 引入数据
+                .join("path")
+                .attr("d", mapPath)
+                .attr("fill", d => {
+                    if (d.properties.code === 110000) { // 北京显示不同颜色
+                        return "red";
+                    }
+                    return "#203f3b";
+                })
+                .attr("stroke", "#23654e")
+                .attr("stroke-width", 1)
+                // 添加鼠标事件
+                .on("mouseover", function () {
+                    // this 这里是指获取到的当前path路径元素
+                    d3.select(this).attr("fill", "#36b289");
+                })
+                .on("mouseout", function () {
+                    d3.select(this).attr("fill", "#203f3b");
+                })
+                .on("click", mapClick)
+                .style("cursor", "pointer")
+            // 各个省份添加文字
+            mapText();
+        };
+        const mapText = function () {
+            svg.append("g").attr("class", "g-text")
+                .selectAll("text")
+                .data(data.features)
+                .join("text")
+                .text(d => {
+                    if (d.properties.code) {
+                        return d.properties.name;
+                    } else {
+                        return d.properties.description;
+                    }
+                })
+                .style("font-size", 9)
+                .style("fill", "white")
+                .attr("transform", d => {
+                    console.log(d);
+                    /* 文字的位置处理 */
+                    const pointCenter = d.properties.center || d.properties.centroid;   // 判断是否存在中心坐标
+                    let centroid = [];
+                    if (pointCenter) { // 若存在，则取其质心的坐标
+                        centroid = projection(pointCenter);
+                    } else { // 若不存在 则重新计算出对应坐标
+                        centroid = mapPath.centroid(d)
+                    };
+                    // 澳门香港离得太近，特殊处理
+                    if (d.properties.code === 820000) {
+                        return `translate(${centroid[0] - 10},${centroid[1] + 4})`;
+                    } else if (d.properties.code === 810000) {
+                        return `translate(${centroid[0] + 4},${centroid[1] + 4})`;
+                    } else {
+                        return `translate(${centroid[0] - 4},${centroid[1] + 4})`;
+                    }
+                })
+        };
+        // 点击地图    
+        const detail = document.querySelector(".popStyle");
+        const spanName = document.querySelector(".popStyle .name");
+        const jingweidu = document.querySelector(".popStyle .jingweidu");
+        const mapClick = function (e, d) {
+            // e是原生的点击事件，d是代表点击的当前位置的地图数据
+            if (d.properties.code) {
+                let translate;
+                let xyList = []
+                const pointCenter = d.properties.center || d.properties.centroid;// 此时是一定存在中心坐标
+                console.log(projection(pointCenter));
+                xyList = projection(pointCenter);
+                spanName.innerHTML = d.properties.fullname;
+                jingweidu.innerHTML = d.properties.center.join(",");
+                detail.style["transform"] = `translate(${xyList[0] + 8}px, ${xyList[1] - 4}px)`
+                detail.style["display"] = "block";
+            }
+        }
+    
+        // 生成地图
+        mapInit(data);
+    
+    </script>
+
+</body>
+</html>

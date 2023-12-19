@@ -1,0 +1,68 @@
+
+#header {
+    height: 65px;
+    background-color: #1C2023;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+#header > div:first-child {
+    height: 100%;
+    float: left;
+    margin-left: 17px;
+    line-height: 60px;
+    color: white;
+}
+
+#header > div:last-child {
+    height: 100%;
+    float: right;
+    margin-right: 30px;
+    line-height: 60px;
+    text-align: center;
+    color: white;
+}
+
+.container {
+    display: flex;
+}
+
+#naviBar {
+    height: 100vh; 
+    width: 220px;
+    float: left;
+    margin-top: 0;
+    background-color: #1C2023;
+
+}
+
+#naviBar > .sections {
+    color: #666A6D;
+    padding-top: 20px;
+}
+
+#naviBar > .sections > h6 {
+    padding-left: 10px;
+}
+
+#naviBar > .sections > ul li{
+    width: 100%;
+    height: 40px;
+    margin-top: 15px;
+    padding-left: 10px;
+    line-height: 30px;
+    font-family: "icomoon";
+    color: #666A6D;
+}
+
+#naviBar > .sections .currentSection {
+    color: white;
+}
+
+#subLayout {
+    flex-grow: 1;
+    float: left;
+    height: 100vh; 
+}

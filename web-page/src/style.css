@@ -1,0 +1,67 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: monospace, 'icomoon';
+}
+
+@font-face {
+    font-family: 'icomoon';
+    src: url('./fonts/icomoon.eot?fz8tw3');
+    src: url('./fonts/icomoon.eot?fz8tw3#iefix') format('embedded-opentype'),
+        url('./fonts/icomoon.ttf?fz8tw3') format('truetype'),
+        url('./fonts/icomoon.woff?fz8tw3') format('woff'),
+        url('./fonts/icomoon.svg?fz8tw3#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+input {
+    border: none;
+    margin: 0;
+    padding: 0;
+    outline: none; /* 取消默认的轮廓效果，常见于 Chrome */
+    /* 其他样式属性 */
+  }
+
+ul li {
+    list-style: none;
+}
+
+.graphSection {
+    width: 600px;
+    height: 600px;
+    float: left;
+    margin: 20px 10px 0 8cqmax;
+    border: 1px solid #E7E7E7;
+
+}
+
+.graphSection>div:first-of-type {
+    height: 30px;
+    padding-left: 10px;
+    border-bottom: 1px solid #E7E7E7;
+    background-color: #E7E7E7;
+    line-height: 34px;
+}
+
+.graphSection>div:last-of-type {
+    height: 90px;
+    border-bottom: 1px solid #E7E7E7;
+}
+
+
+.arc text {
+ font: 8px sans-serif;
+text-anchor: middle;
+}
+
+.arc path {
+stroke: #fff;
+ }
+
+.title {
+ fill: teal;
+ font-weight: bold;
+
+}

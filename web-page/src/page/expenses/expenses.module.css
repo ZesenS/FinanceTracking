@@ -1,0 +1,91 @@
+.response {
+    position: absolute;
+    width: 100px;
+    height: 40px;
+    top: 10%;
+    left: 50%;
+    margin-left: -50px; /* Adjust the margin based on the half of the width */
+    text-align: center;
+    animation: moveup 1s forwards;
+  }
+  
+@keyframes moveup {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translateY(-50px);
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+
+#expenseForm > div {
+    width: 700px;
+    height: 700px;
+    margin: 80px auto;
+
+}
+
+#expenseForm > div > div {
+    height: 35px;
+    border: 1px solid #F2F2F2;
+    border-radius: 10px;
+    padding-bottom: -20px;
+    margin-bottom: 15px;
+
+}
+
+#expenseForm > div > div > .textArea {
+    height: 29px;
+    width: 10px;
+    display: inline-block;
+    
+}
+
+#expenseForm > div > .textArea > input {
+    float: left;
+    width: 650px;
+    height: 100%;
+    border: none;
+    font-size: 16px;
+}
+#expenseForm > div > .textArea > div {
+    float: left;
+    height: 100%;
+    width:30px;
+    padding: 0 0 0 14px;
+    line-height: 35px;
+    font: "iconmoon"
+}
+
+#expenseForm .radioArea {
+    height: 25px;
+    padding-top:6px;
+    
+}
+.radioArea label {
+    margin-left: 18px;
+    font-size: 15px;
+}
+
+#expenseForm textarea {
+    width: 695px;
+    height: 95px;
+    padding: 5px 0 0 5px;
+    border: 1px solid #F2F2F2;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+#expenseForm .button {
+    margin: 20px 270px;
+    width: 80px;
+    height: 27px;
+    padding-top: 3px;
+    background-color: #1677FF;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+}

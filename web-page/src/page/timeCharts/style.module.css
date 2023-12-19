@@ -1,0 +1,66 @@
+
+#barChart > div:last-of-type > div {
+    float: left;
+    line-height: 90px;
+    margin-left: 60px;
+}
+
+#barChart > div:last-of-type > div > div {
+    float: left;
+    width: 12px;
+    height: 12px;
+    margin: 38px 12px 0 0;
+    border: 1px solid black;
+}
+
+#barChart > div:last-of-type > div > h6 {
+    float: left;
+    font-size: 16px;
+
+}
+.svg {
+    margin-top: 10px;
+}
+
+.selectionOnBar {
+    background-color: #808080;
+}
+
+#lineChart > div:last-of-type > div > div  {
+    float: left;
+    position: relative;
+    width: 70px;
+    height: 30px;
+    border: 1px solid black;
+    margin-top: 10px;
+    margin-left: 90px;
+    border: 1px solid skyblue;
+    border-radius: 5px;
+}
+
+#lineChart > div:last-of-type > div > div > h6 {
+    font-size: 12px;
+    line-height: 30px;
+    font-weight: normal;
+    text-align: center;
+    font-family: "icomoon", monospace;
+    color: #4699FF;
+}
+
+#lineChart > div:last-of-type > div > div > div {
+    visibility: hidden;
+    position: absolute;
+    width: 70px;
+    border: 1px solid skyblue;
+    border-radius: 5px;
+    font-size: 12px;
+    line-height: 100%;
+}
+#lineChart > div:last-of-type > div > div > div ul li {
+    margin-bottom: 10px;
+    padding: 5px 0 0 10px;
+}
+
+#lineChart > div:last-of-type > div > div:hover > h6 + div {
+    visibility: visible;
+}

@@ -1,0 +1,28 @@
+.pieCharts {
+    margin: 30px 0 0 50px;
+}
+
+#pieSection1 > div:last-of-type > div {
+    height: 45px;
+    padding-left: 90px;
+
+
+}
+
+#pieSection1 > div:last-of-type > div > div {
+    float: left;
+    margin-left: 60px;
+    padding-top: 10px;
+}
+
+#pieSection1 > div:last-of-type > div > div > div {
+    float: left;
+    width: 12px;
+    height: 8px;
+    margin: 6px 6px 0 0;
+    border: 1px solid black;
+}
+
+#pieSection1 > div:last-of-type > div > div > h4 {
+    float: left;
+}
